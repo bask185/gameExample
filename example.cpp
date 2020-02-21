@@ -27,8 +27,9 @@ else switch(state){\
 static unsigned char state;
 static bool enabled = true, runOnce = true, exitFlag = false;
 
-static byte digit, serialByte, timeOutTime = 25, randoMizer;
-static bool error;
+static char digit;
+static byte serialByte, timeOutTime = 25, randoMizer;
+static byte error;
 enum errorReasons {
 	none = 0,
 	timeOut,
@@ -97,7 +98,7 @@ stateFunction(enterDigit1) {
 
 			if(digit == serialByte) error = none;
 			else					error = wrongNumber;
-		
+
 			exitFlag = true;
 		}
 		else if(!exampleT) {
@@ -247,30 +248,30 @@ extern bool example(void) {
 	STATE_MACHINE_BEGIN
 
 	State(start) {
-		nextState(enterDigit1, 200); }
+		nextState(enterDigit1, 20); }
 
 	State(enterDigit1) {
-		if(!error) nextState(enterDigit2, 100);
+		if(!error) nextState(enterDigit2, 10);
 		else       nextState(start, 0); }
 
 	State(enterDigit2) {
-		if(!error) nextState(enterDigit3, 100);
+		if(!error) nextState(enterDigit3, 10);
 		else       nextState(start, 0); }
 
 	State(enterDigit3) {
-		if(!error) nextState(enterDigit4, 100);
+		if(!error) nextState(enterDigit4, 10);
 		else       nextState(start, 0); }
 
 	State(enterDigit4) {
-		if(!error) nextState(enterDigit5, 100);
+		if(!error) nextState(enterDigit5, 10);
 		else       nextState(start, 0); }
 
 	State(enterDigit5) {
-		if(!error) nextState(start, 100);
-		else       nextState(win, 0); }
+		if(!error) nextState(win, 0);
+		else       nextState(start, 10); }
 
 	State(win) {
-		nextState(start, 250); }
+		nextState(start, 25); }
 
 	STATE_MACHINE_END
 }

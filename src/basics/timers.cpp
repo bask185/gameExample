@@ -30,13 +30,13 @@ _1ms += 1;
 // 10ms timers
 if(!(_1ms % 10)) { _1ms = 0; _10ms += 1;
 
-	if(exampleT) exampleT--;
 
 
 
 // 100ms timers
 if(!(_10ms % 10)) { _10ms = 0; _100ms += 1;
 
+	if(exampleT) exampleT--;
 
 
 
